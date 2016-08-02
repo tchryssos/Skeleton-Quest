@@ -4,10 +4,11 @@ require_relative "../classes/wizard.rb"
 require 'pry'
 
 class Character
-  attr_accessor :strength, :dexterity, :health, :wisdom, :experience, :class, :name, :alive
+  attr_accessor :level, :strength, :dexterity, :health, :wisdom, :experience, :class, :name, :alive
 
   def initialize
     @alive=true
+    @level=1
   end
 
   def character_class

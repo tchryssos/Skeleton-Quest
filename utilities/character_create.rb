@@ -1,5 +1,4 @@
-require_relative "../lib/character.rb"
-require 'pry'
+require_relative "../utilities/environment"
 
 def character_create(character)
     character.name=character_name(character)

@@ -1,4 +1,4 @@
-require_relative "../lib/character"
+require_relative "../utilities/environment"
 
 def enter_dungeon(character)
   enter_choice=will_you_enter

@@ -1,6 +1,6 @@
-require_relative "../lib/character"
+require_relative "../utilities/environment"
 
-def dungeon_start
+def dungeon
   # dungeon_help
 end
 
