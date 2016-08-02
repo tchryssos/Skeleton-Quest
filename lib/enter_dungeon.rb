@@ -1,6 +1,6 @@
 require_relative "../utilities/environment"
 
-def enter_dungeon(character)
+def start_dungeon(character)
   enter_choice=will_you_enter
   if enter_choice.include?("yes")
     character.alive
