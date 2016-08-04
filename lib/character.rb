@@ -6,7 +6,7 @@ require_relative "../utilities/fighting.rb"
 require 'pry'
 
 class Character
-  attr_accessor :level, :strength, :dexterity, :health, :max_health, :wisdom, :experience, :class, :name, :alive
+  attr_accessor :level, :strength, :dexterity, :health, :max_health, :wisdom, :experience, :class, :name, :alive, :current_experience, :max_experience
   include Fighting
 
   def initialize
@@ -42,10 +42,15 @@ class Character
   def stats
     puts "#{@name.upcase}'S STATS"
     puts "Class: #{@class.capitalize}"
+    puts "Level: #{self.level}"
     puts "Health: #{@health}/#{@max_health}"
     puts "Strength: #{@strength}"
     puts "Dexterity: #{@dexterity}"
     puts "Wisdom: #{@wisdom}"
   end
 
+  def level_up
+    self.level+=1
+    puts "#{self.name} reached level #{self.level}!".yellow
+  end
 end
