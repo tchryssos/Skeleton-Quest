@@ -2,7 +2,7 @@ require_relative "../../utilities/environment"
 
 class Enemy
   attr_accessor :type, :strength, :dexterity, :health, :wisdom, :alive, :inventory, :talk, :name
-
+  include Fighting
   def initialize(type)
     self.alive=true
     self.inventory=[]

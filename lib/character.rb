@@ -49,17 +49,3 @@ class Character
   end
 
 end
-
-mobin=Character.new
-mobin.strength=16
-mobin.dexterity=10
-mobin.health=20
-mobin.name="Mobin"
-
-jangles=Character.new
-jangles.strength=14
-jangles.health=15
-jangles.dexterity=15
-jangles.name="Jangles"
-
-binding.pry
