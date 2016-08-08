@@ -1,7 +1,7 @@
 require_relative "../../utilities/environment"
 
 class Enemy
-  attr_accessor :type, :strength, :dexterity, :health, :wisdom, :alive, :inventory, :talk, :name
+  attr_accessor :type, :strength, :dexterity, :health, :wisdom, :alive, :inventory, :talk, :weak_talk, :name, :exp_given, :equipped_melee_weapon, :equipped_spell, :equipped_ranged_weapon, :loot_pool
   include Fighting
   def initialize(type)
     self.alive=true
@@ -19,8 +19,10 @@ class Enemy
   def enemy_talk
     puts self.talk.sample
   end
-  def defeated
-    puts "You defeated #{self.name}!"
-    character.level+=1
+
+  def defeated(who_defeated)
+    puts "#{self.name} has died!"
+    who_defeated.experience_gain(self.exp_given)
+    puts
   end
 end

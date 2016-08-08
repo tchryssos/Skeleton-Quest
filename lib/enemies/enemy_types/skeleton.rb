@@ -16,8 +16,12 @@ class Skeleton<Enemy
       self.strength = 10+[rand(2..6), rand(2..6)].max
       self.dexterity = 12+[rand(2..6), rand(2..6)].max
       self.wisdom = 9+[rand(2..5), rand(2..5)].max
-      self.health=rand(1..4)
+      self.health=rand(1..3)
       self.name="Lowly Skeleton".red
+      self.exp_given=100
+      self.equipped_melee_weapon=BasicWeapon.new("longsword")
+      self.equipped_ranged_weapon=BasicWeapon.new("shortbow")
+      self.loot_pool=[]
     # elsif self.type=="medium"
     # elsif self.type=="hard"
     end

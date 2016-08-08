@@ -6,6 +6,8 @@ require_relative "./character_create.rb"
 require_relative "./dungeon_room"
 require_relative "../lib/enemies/enemy_types/skeleton"
 require_relative "./fighting.rb"
+require_relative "./weapons/basic_weapon.rb"
+require_relative"./weapons/longswords/magic_longsword"
 
 require 'pry'
 require 'colorize'

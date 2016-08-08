@@ -1,6 +1,6 @@
 require_relative "../utilities/environment"
 
-def dungeon(character)
+def dungeon(character, true_victory_status)
   traveling_text
   victory = false
   room=DungeonRoom.new(character)
@@ -14,10 +14,11 @@ def dungeon(character)
       character.alive=false
     end
     if victory==true
-      character.level_up
-      puts
       puts "You have defeated the skeleton menace in this room!".green
       puts "Congratulations!".green
+      if true_victory_status==false
+        puts "However, more skeletons await ahead..."
+      end
       puts
     end
   end

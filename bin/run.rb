@@ -1,14 +1,15 @@
 require_relative "../utilities/environment"
 
 play_again=true
+true_victory=false
 
 while play_again==true
-  title_scroll
-  sleep(1)
+  # title_scroll
+  # sleep(1)
   character=Character.new
   character_create(character) if character.alive==true
   start_dungeon(character) if character.alive==true
-  dungeon(character) if character.alive==true
+  dungeon(character, true_victory) if character.alive==true
 
 
   if character.alive==false
@@ -27,5 +28,7 @@ while play_again==true
   user_play_again=gets.strip
   if user_play_again.downcase=="no"
     play_again=false
+    puts
+    puts "Thanks for playing "+"Skeleton Quest".red+"!"
   end
 end

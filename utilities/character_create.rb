@@ -38,9 +38,6 @@ def character_name(character)
       puts "Your attempts at disguising your skeleton nature have failed! You are banished!"
       puts
       character.alive=false
-    else
-      puts "Mmm... yes...that is a good name."
-      puts
     end
   end
   char_name
@@ -93,7 +90,7 @@ end
 
 def class_select_text(character_name)
   puts "Now,"+" #{character_name}" + ", what kind of warrior are you?"
-  puts "(Type Classes to learn about the available classes\nor type Knight, Wizard, or Thief)"
+  puts "(Type 'classes' to learn about the available classes\nor type 'knight', 'wizard', or 'thief')"
   puts "->".yellow
 end
 
@@ -129,6 +126,6 @@ end
 def text_other
   puts
   puts "What's that? Speak up, my hearing isn't what it used to be..."
-  puts "(Please type Classes, Knight, Wizard, or Thief)"
+  puts "(Please type 'classes', 'knight', 'wizard', or 'thief')"
   puts "->".yellow
 end
