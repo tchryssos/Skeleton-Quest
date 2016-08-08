@@ -15,9 +15,9 @@ class Character
     @current_experience=0
     @max_experience=100
     @inventory=[]
-    @equipped_melee_weapon=BasicWeapon.new("longsword")
-    @equipped_ranged_weapon=BasicWeapon.new("shortbow")
-    @equipped_spell=BasicWeapon.new("basic spell")
+    @equipped_melee_weapon=BasicWeapon.new("longsword", "melee")
+    @equipped_ranged_weapon=BasicWeapon.new("shortbow", "ranged")
+    @equipped_spell=BasicWeapon.new("basic spell", "spell")
   end
 
   def character_class
@@ -75,7 +75,7 @@ class Character
     sleep(1)
     puts
     puts "Type 'strength','dexterity', or 'wisdom' to upgrade that stat, \nor type 'health' to gain hitpoints. \nYou can also type 'stats' to see current stats."
-    puts
+    puts "->".yellow
     level_up_choice=gets.strip
     level_up_stats(level_up_choice)
     self.health=self.max_health
@@ -84,15 +84,19 @@ class Character
   def level_up_stats(level_up_choice)
     if level_up_choice.downcase == 'strength'
       self.strength+=2
+      puts
       puts "#{self.name}'s Strength increased!"
     elsif level_up_choice.downcase == 'dexterity'
       self.dexterity+=2
+      puts
       puts "#{self.name}'s Dexterity increased!"
     elsif level_up_choice.downcase == 'wisdom'
       self.wisdom+=2
+      puts
       puts "#{self.name}'s Wisdom increased!"
     elsif level_up_choice.downcase == 'health'
       self.max_health+=5
+      puts
       puts "#{self.name} gained hitpoints!"
     elsif level_up_choice.downcase == 'stats'
       self.stats

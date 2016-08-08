@@ -2,10 +2,13 @@ require_relative '../item.rb'
 
 class Weapon<Item
 
+  attr_accessor :damage_type, :weapon_type
+
   @@all=[]
 
-  def initialize(name)
+  def initialize(name, weapon_type)
     @name=name
+    @weapon_type=weapon_type
     @@all<<self
   end
 

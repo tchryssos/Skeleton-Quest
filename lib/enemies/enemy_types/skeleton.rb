@@ -19,11 +19,15 @@ class Skeleton<Enemy
       self.health=rand(1..3)
       self.name="Lowly Skeleton".red
       self.exp_given=100
-      self.equipped_melee_weapon=BasicWeapon.new("longsword")
-      self.equipped_ranged_weapon=BasicWeapon.new("shortbow")
-      self.loot_pool=[]
+      self.equipped_melee_weapon=BasicWeapon.new("longsword", "melee")
+      self.equipped_ranged_weapon=BasicWeapon.new("shortbow", "ranged")
+      self.loot_pool=easy_loot_pool
     # elsif self.type=="medium"
     # elsif self.type=="hard"
     end
+  end
+
+  def drop_loot
+    self.loot_pool.sample
   end
 end

@@ -25,4 +25,8 @@ class Enemy
     who_defeated.experience_gain(self.exp_given)
     puts
   end
+
+  def easy_loot_pool
+    [MagicWeapon.new("Skele-Shatter", "melee"), nil, MagicWeapon.new("Boneshooter","ranged"), nil, MagicWeapon.new("Magic Blast", "spell")]
+  end
 end

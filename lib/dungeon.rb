@@ -15,9 +15,10 @@ def dungeon(character, true_victory_status)
     end
     if victory==true
       puts "You have defeated the skeleton menace in this room!".green
-      puts "Congratulations!".green
+      puts
+      loot_drop(room)
       if true_victory_status==false
-        puts "However, more skeletons await ahead..."
+        puts "More skeletons await ahead...".red
       end
       puts
     end
@@ -178,4 +179,30 @@ def traveling_text
   puts "As your eyes begin adjusting to the darkness, the door behind you closes."
   puts "You push deeper into the lair..."
   sleep(2)
+end
+
+def loot_drop(room)
+  drops=room.enemy.drop_loot
+  if drops !=nil
+    puts "You found #{drops.name}! Equip now?"
+    puts "(Enter 'yes' or 'no')"
+    puts "->".yellow
+    equip_answer=gets.strip
+    if equip_answer=="yes" && drops.weapon_type == "melee"
+      puts
+      puts "#{room.character.name} replaced #{room.character.equipped_melee_weapon.name} with #{drops.name}!"
+      puts
+      room.character.equipped_melee_weapon=drops
+    elsif equip_answer=="yes" && drops.weapon_type == "ranged"
+      puts
+      puts "#{room.character.name} replaced #{room.character.equipped_ranged_weapon.name} with #{drops.name}!"
+      puts
+      room.character.equipped_ranged_weapon=drops
+    elsif equip_answer=="yes" && drops.weapon_type == "spell"
+      puts
+      puts "#{room.character.name} replaced #{room.character.equipped_spell.name} with #{drops.name}!"
+      puts
+      room.character.equipped_spell=drops
+    end
+  end
 end
