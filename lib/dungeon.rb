@@ -90,6 +90,7 @@ def dungeon_fight(room)
   puts
   dungeon_fight_text
   fight_input=gets.strip
+  system "clear"
   puts
   if fight_input.downcase == "sword"
     dungeon_fight_sword(room)
@@ -109,6 +110,8 @@ def dungeon_fight(room)
     puts
     puts room.character.stats
     dungeon_fight(room)
+  elsif fight_input.downcase=="auto kill"
+    room.enemy.alive=false
   end
 end
 
@@ -173,36 +176,58 @@ def traveling_text
     puts c
     sleep(0.5)
   end
+  system "clear"
   puts
   puts "After a brief journey, you arrive at the "+"Skeletons' Lair".red+"."
   puts "You pull the great metal doors open and step into the inky blackness beyond."
   puts "As your eyes begin adjusting to the darkness, the door behind you closes."
   puts "You push deeper into the lair..."
-  sleep(2)
+  sleep(1)
 end
 
 def loot_drop(room)
   drops=room.enemy.drop_loot
+  drop_swap(room, drops)
+end
+
+def drop_swap(room, drops)
   if drops !=nil
+    puts "!!!"
+    sleep (0.5)
     puts "You found #{drops.name}! Equip now?"
-    puts "(Enter 'yes' or 'no')"
+    puts "(Enter 'yes' or 'no', \nor type 'compare' to see how it stacks up against your current equipment)"
     puts "->".yellow
     equip_answer=gets.strip
-    if equip_answer=="yes" && drops.weapon_type == "melee"
+    if equip_answer.downcase=="yes" && drops.item_type == "weapon" && drops.weapon_type == "melee"
       puts
       puts "#{room.character.name} replaced #{room.character.equipped_melee_weapon.name} with #{drops.name}!"
       puts
       room.character.equipped_melee_weapon=drops
-    elsif equip_answer=="yes" && drops.weapon_type == "ranged"
+    elsif equip_answer.downcase=="yes" && drops.item_type == "weapon" && drops.weapon_type == "ranged"
       puts
       puts "#{room.character.name} replaced #{room.character.equipped_ranged_weapon.name} with #{drops.name}!"
       puts
       room.character.equipped_ranged_weapon=drops
-    elsif equip_answer=="yes" && drops.weapon_type == "spell"
+    elsif equip_answer.downcase=="yes" && drops.item_type == "weapon" && drops.weapon_type == "spell"
       puts
       puts "#{room.character.name} replaced #{room.character.equipped_spell.name} with #{drops.name}!"
       puts
       room.character.equipped_spell=drops
+    elsif equip_answer.downcase=="compare" && drops.item_type == "weapon" && drops.weapon_type == "melee"
+      puts
+      melee_weapon_drop_compare(room, drops)
+      puts
+      drop_swap(room, drops)
+    elsif equip_answer.downcase=="compare" && drops.item_type == "weapon" && drops.weapon_type == "ranged"
+      puts
+      ranged_weapon_drop_compare(room, drops)
+      puts
+      drop_swap(room, drops)
+    elsif equip_answer.downcase=="compare" && drops.item_type == "weapon" && drops.weapon_type == "spell"
+      puts
+      spell_drop_compare(room, drops)
+      puts
+      drop_swap(room, drops)
     end
   end
 end

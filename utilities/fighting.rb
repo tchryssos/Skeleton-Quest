@@ -20,8 +20,6 @@ module Fighting
     end
   end
 
-#### CREATE SEPARATE VARIABLES FOR MAIN DAMAGE AND DAMAGE BONUS, PUTS BOTH, CHANGE WEAPONS TO NOT PUTS ###
-
   def fighting_sword(actor_1, actor_2)
       if actor_1.strength+rand(1..20)+actor_1.equipped_melee_weapon.weapon_bonus>actor_2.dexterity+rand(1..20)
         puts "Hit! "+["#{actor_1.name} hit #{actor_2.name} with their #{actor_1.equipped_melee_weapon.name}!", "#{actor_1.name} stabs #{actor_2.name}!", "#{actor_2.name} gets sliced across the chest by #{actor_1.name}'s #{actor_1.equipped_melee_weapon.name}"].sample

@@ -2,7 +2,7 @@ require_relative 'environment'
 
 class Item
 
-  attr_reader :name
+  attr_reader :name, :item_type
 
   def initialize(name)
     @name=name

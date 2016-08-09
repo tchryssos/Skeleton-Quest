@@ -7,6 +7,11 @@ class MagicWeapon<Weapon
     super
     @damage_type=["frost".light_blue, "fire".light_red, "shock".light_yellow].sample
     @weapon_type=weapon_type
+    @weapon_damage="1d8"
+    @max_damage=8
+    @weapon_bonus_damage="1d3 #{self.damage_type}"
+    @max_bonus_damage=3
+    @weapon_attack_bonus="+2"
   end
 
   def attack

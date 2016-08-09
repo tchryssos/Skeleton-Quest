@@ -15,8 +15,8 @@ class Character
     @current_experience=0
     @max_experience=100
     @inventory=[]
-    @equipped_melee_weapon=BasicWeapon.new("longsword", "melee")
-    @equipped_ranged_weapon=BasicWeapon.new("shortbow", "ranged")
+    @equipped_melee_weapon=BasicWeapon.new("basic longsword", "melee")
+    @equipped_ranged_weapon=BasicWeapon.new("basic shortbow", "ranged")
     @equipped_spell=BasicWeapon.new("basic spell", "spell")
   end
 
