@@ -61,6 +61,8 @@ class Character
   end
 
   def experience_gain(experience_amount)
+    puts
+    sleep (0.5)
     puts "#{self.name} gained #{experience_amount} experience!"
     self.current_experience+=experience_amount
     if self.current_experience >= self.max_experience

@@ -26,7 +26,7 @@ class Skeleton<Enemy
       self.loot_pool=easy_loot_pool
     elsif self.type=="medium"
       self.strength = 10+rand(3..6)
-      self.dexterity = 12+[rand(3..4), rand(3..4)].max
+      self.dexterity = 10+[rand(3..4), rand(3..4)].max
       self.wisdom = 9+[rand(2..5), rand(2..5)].max
       self.health=rand(30..40)
       self.name="Spooky Skeleton".red

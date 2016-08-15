@@ -2,6 +2,7 @@ require_relative "../utilities/environment"
 
 def character_create(character)
     character.name=character_name(character).magenta
+    character.name="Will Smith, Famous Actor".magenta
     character.class=character_class(character.name) if character.alive==true
     character.character_class if character.alive==true
     puts

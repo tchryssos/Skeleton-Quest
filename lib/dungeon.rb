@@ -159,6 +159,7 @@ def enemy_combat_round(room)
   else
     puts "#{room.enemy.name} attacks!"
     sleep(1)
+    puts
     enemy_attack_type=rand(1..10)
     sorted_stats=room.enemy.sort_attributes
     if enemy_attack_type == (1..7)
@@ -250,6 +251,9 @@ def push_forward(true_victory_status,room)
   if push_forward_answer=='no'
     room.character.alive=false
   end
-  sleep(0.5)
+  "...".each_char do |c|
+    puts c
+    sleep(0.5)
+  end
   system "clear"
 end
