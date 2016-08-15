@@ -48,6 +48,7 @@ def needs_more_time(character)
     puts "We're doomed."
     puts
     character.alive=false
+  else character.alive=true
   end
 end
 

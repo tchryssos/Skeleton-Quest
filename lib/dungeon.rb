@@ -2,25 +2,26 @@ require_relative "../utilities/environment"
 
 def dungeon(character, true_victory_status)
   traveling_text
-  victory = false
-  room=DungeonRoom.new(character)
-  room_start(room)
-  dungeon_input=gets.strip
-  while character.alive==true && victory==false
-    dungeon_choices(dungeon_input,room)
-    if room.enemy.alive==false
-      victory=true
-    elsif room.character.health==0
-      character.alive=false
-    end
-    if victory==true
-      puts "You have defeated the skeleton menace in this room!".green
-      puts
-      loot_drop(room)
-      if true_victory_status==false
-        puts "More skeletons await ahead...".red
+  while true_victory_status==false && character.alive==true
+    victory = false
+    room=DungeonRoom.new(character)
+    room_start(room)
+    dungeon_input=gets.strip
+    while character.alive==true && victory==false
+      dungeon_choices(dungeon_input,room)
+      if room.enemy.alive==false
+        victory=true
+      elsif room.character.health==0
+        character.alive=false
       end
-      puts
+      if victory==true
+        puts "You have defeated the skeleton menace in this room!".green
+        puts
+        loot_drop(room)
+        if true_victory_status==false
+          push_forward(true_victory_status,room)
+        end
+      end
     end
   end
 end
@@ -158,11 +159,14 @@ def enemy_combat_round(room)
   else
     puts "#{room.enemy.name} attacks!"
     sleep(1)
-    enemy_attack_type=rand(1..4)
-    if enemy_attack_type == 4
-      room.enemy.fighting(room.enemy, room.character, "dexterity")
+    enemy_attack_type=rand(1..10)
+    sorted_stats=room.enemy.sort_attributes
+    if enemy_attack_type == (1..7)
+      room.enemy.fighting(room.enemy, room.character, "#{sorted_stats[0][:name].downcase}")
+    elsif enemy_attack_type == (8..9)
+      room.enemy.fighting(room.enemy, room.character, "#{sorted_stats[1][:name].downcase}")
     else
-      room.enemy.fighting(room.enemy, room.character, "strength")
+      room.enemy.fighting(room.enemy, room.character, "#{sorted_stats[2][:name].downcase}")
     end
   end
   if room.character.health==0
@@ -172,10 +176,10 @@ end
 
 def traveling_text
   puts
-  "...".each_char do |c|
-    puts c
-    sleep(0.5)
-  end
+  # "...".each_char do |c|
+  #   puts c
+  #   sleep(0.5)
+  # end
   system "clear"
   puts
   puts "After a brief journey, you arrive at the "+"Skeletons' Lair".red+"."
@@ -187,6 +191,7 @@ end
 
 def loot_drop(room)
   drops=room.enemy.drop_loot
+  # drops=MagicWeapon.new("Skele-Shatter", "melee")
   drop_swap(room, drops)
 end
 
@@ -200,16 +205,19 @@ def drop_swap(room, drops)
     equip_answer=gets.strip
     if equip_answer.downcase=="yes" && drops.item_type == "weapon" && drops.weapon_type == "melee"
       puts
+      system "clear"
       puts "#{room.character.name} replaced #{room.character.equipped_melee_weapon.name} with #{drops.name}!"
       puts
       room.character.equipped_melee_weapon=drops
     elsif equip_answer.downcase=="yes" && drops.item_type == "weapon" && drops.weapon_type == "ranged"
       puts
+      system "clear"
       puts "#{room.character.name} replaced #{room.character.equipped_ranged_weapon.name} with #{drops.name}!"
       puts
       room.character.equipped_ranged_weapon=drops
     elsif equip_answer.downcase=="yes" && drops.item_type == "weapon" && drops.weapon_type == "spell"
       puts
+      system "clear"
       puts "#{room.character.name} replaced #{room.character.equipped_spell.name} with #{drops.name}!"
       puts
       room.character.equipped_spell=drops
@@ -230,4 +238,18 @@ def drop_swap(room, drops)
       drop_swap(room, drops)
     end
   end
+end
+
+def push_forward(true_victory_status,room)
+  puts "More skeletons await ahead...".red
+  puts "Will you push forward?"
+  puts "Type 'yes' or 'no'"
+  puts "->".yellow
+  puts
+  push_forward_answer=gets.strip
+  if push_forward_answer=='no'
+    room.character.alive=false
+  end
+  sleep(0.5)
+  system "clear"
 end

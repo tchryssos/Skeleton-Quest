@@ -14,7 +14,7 @@ class Knight
 
  ########
 
-  private 
+  private
 
   def knight_stat_roll
     self.strength=knight_strength_roll
@@ -36,7 +36,7 @@ class Knight
   end
 
   def knight_health_roll
-    12+rand(10..14)
+    17+rand(10..15)
   end
 
 end

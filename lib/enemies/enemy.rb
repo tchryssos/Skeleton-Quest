@@ -3,6 +3,7 @@ require_relative "../../utilities/environment"
 class Enemy
   attr_accessor :type, :strength, :dexterity, :health, :wisdom, :alive, :inventory, :talk, :weak_talk, :name, :exp_given, :equipped_melee_weapon, :equipped_spell, :equipped_ranged_weapon, :loot_pool
   include Fighting
+
   def initialize(type)
     self.alive=true
     self.inventory=[]
@@ -28,5 +29,9 @@ class Enemy
 
   def easy_loot_pool
     [MagicWeapon.new("Skele-Shatter", "melee"), nil, MagicWeapon.new("Boneshooter","ranged"), nil, MagicWeapon.new("Magic Blast", "spell")]
+  end
+
+  def sort_attributes
+    [{name: "Strength", value: @strength},{name:"Dexterity", value:@dexterity}, {name: "Wisdom", value:@wisdom}].sort_by {|stat| stat[:value]}
   end
 end

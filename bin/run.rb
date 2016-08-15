@@ -4,8 +4,8 @@ play_again=true
 true_victory=false
 
 while play_again==true
-  title_scroll
-  sleep(1)
+  # title_scroll
+  # sleep(1)
   character=Character.new
   character_create(character) if character.alive==true
   start_dungeon(character) if character.alive==true

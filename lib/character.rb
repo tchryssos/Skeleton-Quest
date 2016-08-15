@@ -119,4 +119,8 @@ class Character
       sleep(1)
     end
 
+    def sort_attributes
+      [{name: "Strength", value: @strength},{name:"Dexterity", value:@dexterity}, {name: "Wisdom", value:@wisdom}].sort_by {|stat| stat[:value]}
+    end
+
 end
