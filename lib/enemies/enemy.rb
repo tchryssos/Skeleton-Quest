@@ -32,11 +32,11 @@ class Enemy
   end
 
   def easy_loot_pool
-    [MagicWeapon.new("Skele-Shatter Mace", "melee"), nil, MagicWeapon.new("Boneshooter Bow","ranged"), nil, MagicWeapon.new("Magic Blast", "spell")]
+    [MagicWeapon.new("Skele-Shatter Mace", "melee"), MagicWeapon.new("Mr. Skelly's Bane", "melee"), nil, MagicWeapon.new("Boneshooter Bow","ranged"), MagicWeapon.new("The Creeper","ranged"), nil, MagicWeapon.new("Pryoblast", "spell"), MagicWeapon.new("Blizzard", "spell")]
   end
 
   def medium_loot_pool
-    [LegendaryWeapon.new("Leg-Bone Hammer 1999", "melee"), nil, LegendaryWeapon.new("Ghostly Bow","ranged"), nil, LegendaryWeapon.new("Crumble to Dust", "spell")]
+    [LegendaryWeapon.new("Leg-Bone Hammer 1999", "melee"), LegendaryWeapon.new("Whip of Ghouls and Fiends II", "melee"), nil, LegendaryWeapon.new("Rick's Phantasmal Bow","ranged"), LegendaryWeapon.new("Cadaverous Knife-Flinger","ranged"),nil, LegendaryWeapon.new("GIANT SPOOKENING", "spell"),LegendaryWeapon.new("Ragnarock", "spell")]
   end
 
   def hard_loot_pool

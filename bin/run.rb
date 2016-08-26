@@ -4,8 +4,8 @@ play_again=true
 true_victory=false
 
 system "clear"
-title_scroll
-sleep(1)
+# title_scroll
+# sleep(1)
 while play_again==true
   character=Character.new
   character_create(character) if character.alive==true
@@ -27,7 +27,8 @@ while play_again==true
   puts "(Type 'yes' or 'no')"
   puts "->".yellow
   user_play_again=gets.strip
-  if user_play_again.downcase=="no"
+  if user_play_again.downcase[0]!='n'
+  else
     play_again=false
     puts
     puts "Thanks for playing "+"Skeleton Quest".red+"!"

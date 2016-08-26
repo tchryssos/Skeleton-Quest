@@ -234,30 +234,35 @@ def drop_swap(room, drops)
       puts "#{room.character.name} replaced #{room.character.equipped_ranged_weapon.name} with #{drops.name}!"
       puts
       room.character.equipped_ranged_weapon=drops
-    elsif equip_answer.downcase=="yes" && drops.item_type == "weapon" && drops.weapon_type == "spell"
+    elsif equip_answer.downcase.strip=="yes" && drops.item_type == "weapon" && drops.weapon_type == "spell"
       puts
       system "clear"
       puts "#{room.character.name} replaced #{room.character.equipped_spell.name} with #{drops.name}!"
       puts
       room.character.equipped_spell=drops
-    elsif equip_answer.downcase=="compare" && drops.item_type == "weapon" && drops.weapon_type == "melee"
+    elsif equip_answer.downcase.strip=="compare" && drops.item_type == "weapon" && drops.weapon_type == "melee"
       puts
       melee_weapon_drop_compare(room, drops)
       puts
       drop_swap(room, drops)
-    elsif equip_answer.downcase=="compare" && drops.item_type == "weapon" && drops.weapon_type == "ranged"
+    elsif equip_answer.downcase.strip=="compare" && drops.item_type == "weapon" && drops.weapon_type == "ranged"
       puts
       ranged_weapon_drop_compare(room, drops)
       puts
       drop_swap(room, drops)
-    elsif equip_answer.downcase=="compare" && drops.item_type == "weapon" && drops.weapon_type == "spell"
+    elsif equip_answer.downcase.strip=="compare" && drops.item_type == "weapon" && drops.weapon_type == "spell"
       puts
       spell_drop_compare(room, drops)
       puts
       drop_swap(room, drops)
+    elsif equip_answer == "no"
+      puts
+      puts "#{room.character.name} did not take #{drops.name}."
+      sleep (0.5)
+      puts
     else
       puts
-      puts "Please type 'yes' or 'compare'!"
+      puts "Please type 'yes', 'no', or 'compare'!"
       drop_swap(room, drops)
     end
   end
@@ -270,12 +275,20 @@ def push_forward(true_victory_status,room)
   puts "->".yellow
   puts
   push_forward_answer=gets.strip
-  if push_forward_answer=='no'
-    room.character.alive=false
-  end
-  ".....".each_char do |c|
-    print c
+  if push_forward_answer.downcase.strip != 'no' && push_forward_answer.downcase.strip != 'yes'
     sleep(0.5)
+    system 'clear'
+    puts
+    puts "Please type 'yes' or 'no'"
+    puts
+    push_forward(true_victory_status, room)
+  elsif push_forward_answer.downcase.strip=='no'
+      room.character.alive=false
+  else
+    ".....".each_char do |c|
+      print c
+      sleep(0.5)
+    end
   end
   system "clear"
 end
