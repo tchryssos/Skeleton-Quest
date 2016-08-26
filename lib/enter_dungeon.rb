@@ -2,7 +2,7 @@ require_relative "../utilities/environment"
 
 def start_dungeon(character)
   enter_choice=will_you_enter
-  if enter_choice.include?("yes")
+  if enter_choice.downcase.include?("yes")
     character.alive
   elsif
     character.alive=why_not_enter(character)
@@ -44,7 +44,6 @@ def needs_more_time(character)
   puts "->".yellow
   time_answer=gets.chomp
   if time_answer=="no"
-    puts
     puts "We're doomed."
     puts
     character.alive=false

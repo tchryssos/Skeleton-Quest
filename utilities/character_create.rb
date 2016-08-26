@@ -2,7 +2,6 @@ require_relative "../utilities/environment"
 
 def character_create(character)
     character.name=character_name(character).magenta
-    character.name="Will Smith, Famous Actor".magenta
     character.class=character_class(character.name) if character.alive==true
     character.character_class if character.alive==true
     puts
@@ -90,7 +89,7 @@ def character_class(name)
 end
 
 def class_select_text(character_name)
-  puts "Now,"+" #{character_name}" + ", what kind of warrior are you?"
+  puts "Now, #{character_name}, what kind of warrior are you?"
   puts "(Type 'classes' to learn about the available classes\nor type 'knight', 'wizard', or 'thief')"
   puts "->".yellow
 end

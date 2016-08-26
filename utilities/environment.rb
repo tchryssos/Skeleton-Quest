@@ -8,6 +8,7 @@ require_relative "../lib/enemies/enemy_types/skeleton"
 require_relative "./fighting.rb"
 require_relative "./weapons/basic_weapon.rb"
 require_relative"./weapons/magic_weapon.rb"
+require_relative"./weapons/legendary_weapon.rb"
 require_relative"weapon_drop_compare.rb"
 
 

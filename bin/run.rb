@@ -3,9 +3,10 @@ require_relative "../utilities/environment"
 play_again=true
 true_victory=false
 
+system "clear"
+title_scroll
+sleep(1)
 while play_again==true
-  # title_scroll
-  # sleep(1)
   character=Character.new
   character_create(character) if character.alive==true
   start_dungeon(character) if character.alive==true
@@ -15,7 +16,7 @@ while play_again==true
   if character.alive==false
     puts
     puts "No one was able to stop the skeletons."
-    sleep (2)
+    sleep (1.5)
     puts "Everything has been overwhelmed by skeletons.".red
     puts
     sleep(1)

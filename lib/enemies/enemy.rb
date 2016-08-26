@@ -21,6 +21,10 @@ class Enemy
     puts self.talk.sample
   end
 
+  def enemy_low_health_talk
+    puts "...".yellow
+  end
+
   def defeated(who_defeated)
     puts "#{self.name} has died!"
     who_defeated.experience_gain(self.exp_given)
@@ -28,7 +32,15 @@ class Enemy
   end
 
   def easy_loot_pool
-    [MagicWeapon.new("Skele-Shatter", "melee"), nil, MagicWeapon.new("Boneshooter","ranged"), nil, MagicWeapon.new("Magic Blast", "spell")]
+    [MagicWeapon.new("Skele-Shatter Mace", "melee"), nil, MagicWeapon.new("Boneshooter Bow","ranged"), nil, MagicWeapon.new("Magic Blast", "spell")]
+  end
+
+  def medium_loot_pool
+    [LegendaryWeapon.new("Leg-Bone Hammer 1999", "melee"), nil, LegendaryWeapon.new("Ghostly Bow","ranged"), nil, LegendaryWeapon.new("Crumble to Dust", "spell")]
+  end
+
+  def hard_loot_pool
+    []
   end
 
   def sort_attributes

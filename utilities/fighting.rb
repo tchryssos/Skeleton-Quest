@@ -3,9 +3,6 @@ require 'colorize'
 
 module Fighting
 
-  ##allow fighting methods to take in damage ranges from actors##
-  ##probably create weapon classes and give to each enemy/player and take damage ranges from those##
-
   def fighting(actor_1, actor_2, attack_type)
     if attack_type=="strength"
       fighting_sword(actor_1, actor_2)
@@ -28,7 +25,7 @@ module Fighting
     # puts
     if attack_d20==20
       puts "Critical Hit! "+"#{actor_1.name} swings for maximum damage!"
-      damage=actor_1.equipped_melee_weapon.max_damage
+      damage=actor_1.equipped_melee_weapon.max_damage+((actor_1.strength)/2-5.floor)
       bonus_damage=actor_1.equipped_melee_weapon.max_bonus_damage
       puts "#{damage} damage!"
       if bonus_damage!=0
@@ -68,7 +65,7 @@ module Fighting
     # puts
     if attack_d20==20
       puts "Critical Hit! "+"#{actor_1.name} shoots for maximum damage!"
-      damage=actor_1.equipped_ranged_weapon.max_damage
+      damage=actor_1.equipped_ranged_weapon.max_damage+((actor_1.dexterity)/2-5.floor)
       bonus_damage=actor_1.equipped_ranged_weapon.max_bonus_damage
       puts "#{damage} damage!"
       if bonus_damage!=0
@@ -89,7 +86,6 @@ module Fighting
           puts "... and #{bonus_damage} #{actor_1.equipped_ranged_weapon.damage_type} damage!"
       end
       actor_2.health-=damage+bonus_damage
-      actor_2.health-=damage
       actor_2.health=[actor_2.health, 0].max
       if actor_2.health==0
         actor_2.defeated(actor_1)
@@ -109,11 +105,11 @@ module Fighting
     # puts
     if attack_d20==20
       puts "Critical Hit! "+"#{actor_1.name} casts for maximum damage!"
-        damage=actor_1.equipped_spell.max_damage
+        damage=actor_1.equipped_spell.max_damage+((actor_1.wisdom)/2-5.floor)
         bonus_damage=actor_1.equipped_spell.max_bonus_damage
         puts "#{damage} damage!"
       if bonus_damage!=0
-        puts "... and #{bonus_damage} #{actor_1.equipped_spell_weapon.damage_type} damage!"
+        puts "... and #{bonus_damage} #{actor_1.equipped_spell.damage_type} damage!"
       end
       actor_2.health-=damage+bonus_damage
       actor_2.health=[actor_2.health, 0].max
@@ -122,7 +118,7 @@ module Fighting
         actor_2.alive=false
       end
     elsif actor_1.wisdom+attack_d20+actor_1.equipped_spell.weapon_bonus>actor_2.dexterity+defend_d20
-      puts "Hit! "+["#{actor_1.name} hit #{actor_2.name} with a conjured fireball!", "#{actor_1.name} summons boulders that rain onto #{actor_2.name}!", "#{actor_1.name} chants in a low voice, filling the room with toxic gas! #{actor_2.name} chokes!"].sample
+      puts "Hit! "+["#{actor_1.name} buffets #{actor_2.name} with #{actor_1.equipped_spell.name}!", "#{actor_1.name} chants a powerful incantation! #{actor_1.equipped_spell.name}!", "With a wave of their hand, #{actor_1.name} blasts #{actor_2.name} with #{actor_1.equipped_spell.name}!"].sample
       damage=actor_1.equipped_spell.attack+((actor_1.wisdom)/2-5.floor)
       bonus_damage=actor_1.equipped_spell.attack_bonus
       puts "#{damage} damage!"
@@ -136,7 +132,7 @@ module Fighting
         actor_2.alive=false
       end
     else
-      puts "Miss! "+["#{actor_1.name} misses #{actor_2.name} with a water jet!", "#{actor_2.name} jumps over a summoned swarm of flaming rats!", "#{actor_1.name} says the wrong incantation! Rather than daggers, #{actor_2.name} is hit with bread!"].sample
+      puts "Miss! "+["#{actor_1.name} misses #{actor_2.name} with #{actor_1.equipped_spell.name}!", "#{actor_2.name} jumps over #{actor_1.name}'s cast!", "#{actor_1.name} says the wrong incantation! Rather than #{actor_1.equipped_spell.name}, #{actor_2.name} is hit with bread!"].sample
     end
   end
 

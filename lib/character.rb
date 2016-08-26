@@ -85,21 +85,37 @@ class Character
 
   def level_up_stats(level_up_choice)
     if level_up_choice.downcase == 'strength'
-      self.strength+=2
-      puts
-      puts "#{self.name}'s Strength increased!"
-    elsif level_up_choice.downcase == 'dexterity'
-      self.dexterity+=2
-      puts
-      puts "#{self.name}'s Dexterity increased!"
-    elsif level_up_choice.downcase == 'wisdom'
-      self.wisdom+=2
-      puts
-      puts "#{self.name}'s Wisdom increased!"
-    elsif level_up_choice.downcase == 'health'
+      self.strength+=3
+      self.dexterity+=1
+      self.wisdom+=1
       self.max_health+=5
       puts
+      puts "#{self.name}'s Strength increased!"
+      puts "Other stats increased too!"
+    elsif level_up_choice.downcase == 'dexterity'
+      self.dexterity+=3
+      self.strength+=1
+      self.wisdom+=1
+      self.max_health+=5
+      puts
+      puts "#{self.name}'s Dexterity increased!"
+      puts "Other stats increased too!"
+    elsif level_up_choice.downcase == 'wisdom'
+      self.wisdom+=3
+      self.dexterity+=1
+      self.strength+=1
+      self.max_health+=5
+      puts
+      puts "#{self.name}'s Wisdom increased!"
+      puts "Other stats increased too!"
+    elsif level_up_choice.downcase == 'health'
+      self.max_health+=10
+      self.strength+=1
+      self.dexterity+=1
+      self.wisdom+=1
+      puts
       puts "#{self.name} gained hitpoints!"
+      puts "Other stats increased too!"
     elsif level_up_choice.downcase == 'stats'
       self.stats
       puts

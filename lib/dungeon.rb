@@ -11,6 +11,9 @@ def dungeon(character, true_victory_status)
       dungeon_choices(dungeon_input,room)
       if room.enemy.alive==false
         victory=true
+        if room.enemy.boss==true
+          true_victory_status=true
+        end
       elsif room.character.health==0
         character.alive=false
       end
@@ -20,6 +23,21 @@ def dungeon(character, true_victory_status)
         loot_drop(room)
         if true_victory_status==false
           push_forward(true_victory_status,room)
+        else
+          ".....".each_char do |c|
+            print c
+            sleep(0.5)
+          end
+          system "clear"
+          "C O N G R A T U L A T I O N S".each_char do |c|
+            print c.yellow
+            sleep(0.2)
+          end
+          puts
+          puts "You have destroyed all of the skeletons!"
+          puts "The world owes you a great debt!"
+          sleep(1)
+          puts
         end
       end
     end
@@ -93,11 +111,11 @@ def dungeon_fight(room)
   fight_input=gets.strip
   system "clear"
   puts
-  if fight_input.downcase == "sword"
+  if fight_input.downcase == "melee"
     dungeon_fight_sword(room)
     dungeon_after_combat_round(room) unless room.character.health==0 || room.enemy.health == 0
     dungeon_fight(room) unless room.character.health==0 || room.enemy.health == 0
-  elsif fight_input.downcase == "bow"
+  elsif fight_input.downcase == "ranged"
     dungeon_fight_bow(room)
     dungeon_after_combat_round(room) unless room.character.health==0 || room.enemy.health == 0
     dungeon_fight(room) unless room.character.health==0 || room.enemy.health == 0
@@ -143,7 +161,7 @@ end
 
 def dungeon_fight_text
   puts "What will you attack with?"
-  puts "(type 'sword', 'bow', or 'spell' to attack, \ntype 'stats' to view your current stats, type 'flee' to exit combat)"
+  puts "(type 'melee', 'ranged', or 'spell' to attack, \ntype 'stats' to view your current stats, type 'flee' to exit combat)"
   puts "->".yellow
 end
 
@@ -237,6 +255,10 @@ def drop_swap(room, drops)
       spell_drop_compare(room, drops)
       puts
       drop_swap(room, drops)
+    else
+      puts
+      puts "Please type 'yes' or 'compare'!"
+      drop_swap(room, drops)
     end
   end
 end
@@ -251,8 +273,8 @@ def push_forward(true_victory_status,room)
   if push_forward_answer=='no'
     room.character.alive=false
   end
-  "...".each_char do |c|
-    puts c
+  ".....".each_char do |c|
+    print c
     sleep(0.5)
   end
   system "clear"
